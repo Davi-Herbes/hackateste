@@ -1,6 +1,9 @@
 import "@testing-library/jest-dom";
 import { Home } from ".";
 import { renderTheme } from "../../styles/render-theme";
-test("renders learn react link", () => {
-  renderTheme(<Home />);
+
+describe("<Home />", () => {
+  it("should render with default values", () => {
+    renderTheme(<Home />);
+  });
 });
