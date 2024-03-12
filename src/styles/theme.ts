@@ -1,4 +1,7 @@
 export const theme = {
+  shadow: {
+    default: "#888",
+  },
   colors: {
     primaryColor: "#000917",
     secondaryColor: "#fff",
@@ -14,7 +17,7 @@ export const theme = {
     },
 
     sizes: {
-      xsmall: "0.8rem",
+      xsmall: "1.4rem",
       small: "1.6rem",
       medium: "2.4rem",
       large: "3.2rem",
@@ -26,5 +29,15 @@ export const theme = {
   },
   media: {
     lteMedium: "(max-width: 768px)",
+  },
+  spacings: {
+    xsmall: "0.8rem",
+    small: "1.6rem",
+    medium: "2.4rem",
+    large: "3.2rem",
+    xlarge: "4.0rem",
+    xxlarge: "4.8rem",
+    huge: "5.6rem",
+    xhuge: "6.4rem",
   },
 };

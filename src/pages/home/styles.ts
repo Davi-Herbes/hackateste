@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { ThemeType } from "../../styles/types/theme-type";
 
-type WrapperProps = { theme: ThemeType; darkMode?: boolean };
+type WrapperProps = { theme: ThemeType };
 
-export const Wrapper = styled.div<WrapperProps>`
-  background-color: ${({ theme, darkMode }) =>
-    darkMode ? theme.colors.bgDark : theme.colors.bgWhite};
+export const SHome = styled.div<WrapperProps>`
+  height: 100vh;
+  margin-left: 5rem;
 `;
