@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import { ThemeType } from "../../styles/types/theme-type";
 
-type WrapperProps = { theme: ThemeType };
+type Props = { theme: ThemeType };
 
-export const SDefaultHome = styled.div<WrapperProps>`
+export const SDefaultHome = styled.div<Props>`
   ${({ theme }) => css`
     height: 100vh;
     margin-left: 5vw;
+
     .text {
       width: 100%;
       text-align: center;

@@ -1,6 +1,6 @@
 export type User = {
-  sub: string;
+  email: string;
   username: string;
-  exp: number;
-  iat: number;
+  exp?: number;
+  iat?: number;
 };

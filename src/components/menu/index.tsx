@@ -21,7 +21,12 @@ export const Menu = ({ windowSmall }: MenuProps) => {
     <>
       <SButton onClick={() => setVisible((v) => !v)}>{visible ? <Close /> : <MenuIcon />}</SButton>
       <SMenu visible={windowSmall ? visible : undefined}>
-        <LogoLink onClick={() => setVisible((v) => !v)} link="/" text="LOGO"></LogoLink>
+        <LogoLink
+          onClick={() => setVisible((v) => !v)}
+          link="/"
+          image="./src/images/logo_ifrs.png"
+          text="LOGO"
+        ></LogoLink>
         <NavLinks
           onClick={() => setVisible((v) => !v)}
           links={[

@@ -9,17 +9,6 @@ export default defineConfig({
   build: {
     outDir: "../dist",
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://127.0.0.1:3000/",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-        cookiePathRewrite: "http://127.0.0.1:5173/api",
-      },
-    },
-    cors: true,
-  },
   test: {
     globals: true,
     environment: "jsdom",

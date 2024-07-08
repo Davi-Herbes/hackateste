@@ -17,6 +17,7 @@ body {
   font-size: 2.4rem;
   font-family: "Open Sans", sans-serif;
   font-weight: 100;
+
 }
 
 label,input {

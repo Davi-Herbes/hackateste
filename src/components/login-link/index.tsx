@@ -10,11 +10,8 @@ export const LoginLink = () => {
         ""
       ) : (
         <SLoginLink>
-          <div className="login">
-            <Link to="/login">Entrar</Link>
-          </div>
           <div className="register">
-            <Link to="/register">Criar conta</Link>
+            <Link to="/login">Entrar</Link>
           </div>
         </SLoginLink>
       )}

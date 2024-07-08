@@ -6,8 +6,6 @@ type TSText = { theme: ThemeType } & TextProps;
 
 export const SText = styled.p<TSText>`
   ${({ theme, colorDark }) => css`
-    color: ${colorDark
-      ? theme.colors.secondaryColor
-      : theme.colors.primaryColor};
+    color: ${colorDark ? theme.colors.secondaryColor : theme.colors.primaryColor};
   `}
 `;

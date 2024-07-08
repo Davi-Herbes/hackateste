@@ -25,6 +25,7 @@ export const theme = {
       xxlarge: "4.8rem",
       huge: "5.6rem",
       xhuge: "6.4rem",
+      pageTitle: "7vh",
     },
   },
   media: {
