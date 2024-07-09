@@ -43,7 +43,7 @@ export const Register = () => {
             <ErrorMsg>{emailMsg}</ErrorMsg>
 
             <Label htmlFor="register-password">Senha:</Label>
-            <Input name="password" id="register-password"></Input>
+            <Input name="password" id="register-password" type="password"></Input>
             <ErrorMsg>{passwordMsg}</ErrorMsg>
           </InputContainer>
           <ButtonContainer>

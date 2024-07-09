@@ -1,30 +1,30 @@
 import styled, { css } from "styled-components";
 import { ThemeType } from "../../styles/types/theme-type";
 
-export const SProduct = styled.div<{ theme: ThemeType }>`
+export const SItem = styled.div<{ theme: ThemeType }>`
   ${({ theme }) => css`
-    width: 30rem;
-    height: 40vh;
+    height: 20vw;
     box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    > h2 {
-      font-size: 2rem;
+    h2 {
       font-weight: 600;
 
-      width: 100%;
+      width: 80%;
       text-align: justify;
       padding: 0 1rem;
+      height: 3vw;
+      font-size: 2rem;
     }
 
     > div {
-      width: 100%;
+      width: 80%;
       padding: 0 1rem;
       display: flex;
       justify-content: space-between;
-      margin: 1rem 0;
+      height: 2vw;
       div {
         width: 100%;
         font-family: "Open Sans", sans-serif;
@@ -33,9 +33,18 @@ export const SProduct = styled.div<{ theme: ThemeType }>`
       }
     }
 
-    > img {
-      height: 80%;
-      width: auto;
+    overflow: hidden;
+    img {
+      margin-top: 1vw;
+      max-height: 12vw;
+    }
+    button {
+      height: 2vw;
+      width: 80%;
+      border: none;
+      cursor: pointer;
+      background: #ccc;
+      margin-bottom: 1vw;
     }
   `}
 `;

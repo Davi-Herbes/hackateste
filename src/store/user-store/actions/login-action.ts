@@ -4,6 +4,7 @@ import isEmail from "validator/lib/isEmail";
 import { CreateUserData } from "../types/create-user-data";
 // import { useStore } from "zustand";
 import { useUserStore } from "../state";
+import { admins } from "../../../utils/admins";
 export const loginAction: ActionFunction = async ({ request }) => {
   console.log("OPA");
   const validate = ({ username, email, password }: CreateUserData) => {
@@ -41,9 +42,11 @@ export const loginAction: ActionFunction = async ({ request }) => {
     return errors;
   }
 
-  useUserStore
-    .getState()
-    .setUser({ email: createUserData.email, username: createUserData.username });
+  useUserStore.getState().setUser({
+    email: createUserData.email,
+    username: createUserData.username,
+    isAdmin: admins.includes(createUserData.email),
+  });
   useUserStore.getState().toggleIsLoggedIn(true);
   return redirect("/");
 };

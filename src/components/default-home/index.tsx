@@ -11,7 +11,7 @@ export const DefaultHome = () => {
           <img src="./src/images/logo_stok_sync.png" alt="StokSync" />
         </div>
       </div>
-      <div className="text">Faça login para ter acesso</div>
+      <div className="text">O Gerenciador de Recursos do Campus Feliz</div>
     </SDefaultHome>
   );
 };

@@ -14,7 +14,7 @@ export const SMenu = styled.header<TSMenu>`
     z-index: 5;
     position: fixed;
     height: 10vh;
-    width: 100%;
+    width: 100vw;
     background: ${theme.colors.primaryColor};
     padding: 0 ${theme.spacings.xhuge};
     display: flex;

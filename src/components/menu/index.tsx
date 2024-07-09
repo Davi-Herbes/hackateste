@@ -3,6 +3,8 @@ import { LogoLink } from "../logo-link";
 import { NavLinks } from "../nav-link";
 import { SButton, SMenu } from "./styles";
 import { Close, Menu as MenuIcon } from "@styled-icons/material-outlined";
+import { useStore } from "zustand";
+import { useUserStore } from "../../store/user-store/state";
 
 type MenuProps = {
   windowSmall: boolean;
@@ -10,6 +12,7 @@ type MenuProps = {
 
 export const Menu = ({ windowSmall }: MenuProps) => {
   const [visible, setVisible] = useState(false);
+  const store = useStore(useUserStore);
 
   useEffect(() => {
     if (windowSmall) {
@@ -29,11 +32,15 @@ export const Menu = ({ windowSmall }: MenuProps) => {
         ></LogoLink>
         <NavLinks
           onClick={() => setVisible((v) => !v)}
-          links={[
-            { link: "/login", children: "link" },
-            { link: "/register", children: "link" },
-            { link: "/logout", children: "link" },
-          ]}
+          links={
+            store.user?.isAdmin
+              ? [
+                  { link: "/add-item", children: "Adicionar" },
+                  { link: "/remove-item", children: "Remover" },
+                  { link: "/requests", children: "Solicitar compra" },
+                ]
+              : []
+          }
         ></NavLinks>
       </SMenu>
     </>

@@ -1,14 +1,3 @@
-# Front-end:
-
-No diretório meu-ecommerce-front, você encontrará a estrutura básica do aplicativo React.
-Crie componentes para páginas como “Página Inicial”, “Produtos”, “Carrinho de Compras” etc.
-Implemente rotas usando react-router-dom.
-Integre com APIs do back-end para obter dados de produtos.
-
-# Back-end:
-
-No diretório meu-ecommerce-back, você encontrará a estrutura básica do projeto NestJS.
-Crie módulos para “Produtos”, “Usuários”, “Pedidos”, etc.
-Configure bancos de dados (por exemplo, PostgreSQL) usando o módulo @nestjs/typeorm.
-Implemente autenticação usando JWT (JSON Web Tokens).
-Crie controladores e serviços para manipular solicitações HTTP.
+Os produtos aparecerão na página home
+Se o usuário for adm, a nav dele ira conter o link de solicitação de produtos para a compra e link de adicionar e remover produtos
+Se for usuário normal, a nav ira conter o link de solicitação de acesso aos itens

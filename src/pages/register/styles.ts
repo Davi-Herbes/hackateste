@@ -17,9 +17,8 @@ export const SRegister = styled.div<WrapperProps>`
       min-width: 50rem;
     }
 
-    > form > div {
+    form > div {
       background: #fff;
-      height: 70vh;
       width: 100%;
       box-shadow: 0 1px 5px 1px ${theme.shadow.default};
       border-radius: 5px;
@@ -28,7 +27,7 @@ export const SRegister = styled.div<WrapperProps>`
       flex-direction: column;
       align-items: center;
 
-      > h2 {
+      h2 {
         min-height: 20%;
         display: flex;
         align-items: center;
@@ -53,4 +52,5 @@ export const ButtonContainer = styled.div`
   height: 30%;
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 `;
