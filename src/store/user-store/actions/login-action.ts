@@ -46,6 +46,7 @@ export const loginAction: ActionFunction = async ({ request }) => {
     email: createUserData.email,
     username: createUserData.username,
     isAdmin: admins.includes(createUserData.email),
+    req: [],
   });
   useUserStore.getState().toggleIsLoggedIn(true);
   return redirect("/");
