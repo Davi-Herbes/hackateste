@@ -7,32 +7,36 @@ import { AddItem } from "./pages/add-item";
 import { RemoveItem } from "./pages/remove-item";
 import { RequestPage } from "./pages/request";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <Register />,
-        action: loginAction,
-      },
-      {
-        path: "/add-item",
-        element: <AddItem />,
-      },
-      {
-        path: "/remove-item",
-        element: <RemoveItem />,
-      },
-      {
-        path: "/requests",
-        element: <RequestPage />,
-      },
-    ],
-  },
-]);
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/login",
+          element: <Register />,
+          action: loginAction,
+        },
+        {
+          path: "/add-item",
+          element: <AddItem />,
+        },
+        {
+          path: "/remove-item",
+          element: <RemoveItem />,
+        },
+        {
+          path: "/requests",
+          element: <RequestPage />,
+        },
+      ],
+    },
+  ],
+  { basename: "/eccommerce-1" },
+);

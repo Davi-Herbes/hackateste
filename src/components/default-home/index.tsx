@@ -8,7 +8,7 @@ export const DefaultHome = () => {
           <h1 className="page-title">StockSync</h1>
         </div>
         <div>
-          <img src="/images/logo_stok_sync.png" alt="StokSync" />
+          <img src="/eccommerce-1/images/logo_stock_sync.png" alt="StokSync" />
         </div>
       </div>
       <div className="text">O Gerenciador de Recursos do Campus Feliz</div>

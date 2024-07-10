@@ -27,7 +27,7 @@ export const Menu = ({ windowSmall }: MenuProps) => {
         <LogoLink
           onClick={() => setVisible((v) => !v)}
           link="/"
-          image="/images/logo_ifrs.png"
+          image="/eccommerce-1/images/logo_ifrs.png"
           text="LOGO"
         ></LogoLink>
         <NavLinks

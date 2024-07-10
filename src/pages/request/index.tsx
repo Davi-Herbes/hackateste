@@ -39,7 +39,7 @@ export const RequestPage = () => {
         <div className="fields-container">
           <div className="upload-container">
             <div className="image-container">
-              <img src={img ? img : "./src/images/default_image_upload.png"} alt="" />
+              <img src={img ? img : "/eccommerce-1/images/default_image_upload.png"} alt="" />
               <span>{imgName}</span>
             </div>
             <label>

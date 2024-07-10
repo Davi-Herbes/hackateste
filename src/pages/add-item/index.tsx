@@ -2,6 +2,7 @@ import { useUserStore } from "../../store/user-store/state";
 import { useRef, FormEvent, useState } from "react";
 import { SAddItem } from "./styles";
 import { useNavigate } from "react-router-dom";
+import logo from "/public/images/default_image_upload.png";
 
 export const AddItem = () => {
   const [img, setImg] = useState<string>("");
@@ -39,7 +40,7 @@ export const AddItem = () => {
         <div className="fields-container">
           <div className="upload-container">
             <div className="image-container">
-              <img src={img ? img : "/images/default_image_upload.png"} alt="" />
+              <img src={img ? img : logo} alt="" />
               <span>{imgName}</span>
             </div>
             <label>
