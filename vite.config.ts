@@ -7,8 +7,9 @@ export default defineConfig({
   plugins: [react()],
   root: "./",
   build: {
-    outDir: "../dist",
+    outDir: "./build",
   },
+  base: "/eccommerce-1/",
   test: {
     globals: true,
     environment: "jsdom",

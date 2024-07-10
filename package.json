@@ -2,15 +2,15 @@
   "name": "primeira-landing-page",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://davi-herbes.github.io/eccommerce-1",
+  "homepage": "https://Davi-Herbes.github.io/eccommerce-1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@styled-icons/material-outlined": "^10.47.0",
