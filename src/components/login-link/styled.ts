@@ -15,8 +15,10 @@ export const SLoginLink = styled.div<TSLoginLink>`
       font-size: ${theme.font.sizes.small};
       font-weight: 500;
       transition: all 100ms;
+      height: 100%;
       width: 100%;
       text-align: center;
+      align-content: center;
     }
 
     > div {
@@ -41,7 +43,7 @@ export const SLoginLink = styled.div<TSLoginLink>`
     }
 
     > .register {
-      background-color: ${theme.colors.bgWhite};
+      background-color: ${theme.colors.background.white};
 
       > a {
         color: ${theme.colors.primaryColor};

@@ -1,56 +1,120 @@
-import { Button } from "../../components/button";
-import { Input } from "../../components/form-field-components/input";
-import { ButtonContainer, InputContainer, SRegister } from "./styles";
-import { Label } from "../../components/form-field-components/label";
-import { ErrorMsg } from "../../components/form-field-components/error-message";
-import { Form, useActionData } from "react-router-dom";
+import { Form, Link, useActionData } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { RegisterFormError } from "../../store/user-store/actions/errors/register-form-error";
+
+import userPlugSvg from "/images/user-plus.svg";
+import envelopeSvg from "/images/email-envelope.svg";
+import loginSvg from "/images/login.svg";
+import lockSvg from "/images/lock.svg";
+
+import { SRegister } from "./styles";
+import { FullLoading } from "../../components/full-loading";
+import { ValidatedRegister } from "./action/validated_register";
 
 export const Register = () => {
-  const [usernameMsg, setUsernameMsg] = useState("");
-  const [emailMsg, setEmailMsg] = useState("");
-  const [passwordMsg, setPasswordMsg] = useState("");
+  const [validatedRegister, setValidatedRegister] = useState<ValidatedRegister>();
 
-  // A partir do nome do campo, define os seus erros
-  const errorHandler = {
-    username: (msg: string) => setUsernameMsg(msg),
-    email: (msg: string) => setEmailMsg(msg),
-    password: (msg: string) => setPasswordMsg(msg),
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  // const [isVisiblePassword, setIsVisiblePassword] = useState(false);
 
-  const data = useActionData() as RegisterFormError[] | undefined;
+  const data = useActionData();
   useEffect(() => {
-    if (!data) return;
-
-    data.forEach((v) => {
-      errorHandler[v.field](v.message);
-    });
+    if (data instanceof ValidatedRegister) {
+      setValidatedRegister(data);
+    }
+    setIsLoading(false);
   }, [data]);
 
   return (
-    <SRegister>
-      <Form method="POST">
-        <div>
-          <h2>Register</h2>
-          <InputContainer>
-            <Label htmlFor="register-username">Username:</Label>
-            <Input name="username" id="register-username"></Input>
-            <ErrorMsg>{usernameMsg}</ErrorMsg>
+    <>
+      {isLoading && <FullLoading />}
+      <SRegister>
+        <div className="form-container">
+          {validatedRegister?.isValid ? (
+            <div className="email-request">
+              <h3>Enviamos um email de verificação para: </h3>
+              <div className="para">{validatedRegister.registerFormData.email}</div>
+              <img src={envelopeSvg}></img>
+              <div>Verifique na sua caixa de entrada ou span.</div>
+            </div>
+          ) : (
+            <>
+              <Form method="POST" onSubmit={() => setIsLoading(true)}>
+                <h1>Criar Conta</h1>
+                <div className="fields-container">
+                  <div className="field-container">
+                    <label htmlFor="register-username">Nome Completo:</label>
+                    <input
+                      name="username"
+                      className="register-input"
+                      id="register-username"
+                    ></input>
+                    <div>
+                      {validatedRegister?.registerErrors.username.map((val, ind) => (
+                        <div key={ind}>{val}</div>
+                      ))}
+                    </div>
+                  </div>
 
-            <Label htmlFor="register-email">Email:</Label>
-            <Input name="email" id="register-email"></Input>
-            <ErrorMsg>{emailMsg}</ErrorMsg>
+                  <div className="field-container">
+                    <label htmlFor="register-email">Email:</label>
+                    <input name="email" className="register-input" id="register-email"></input>
+                    <div>
+                      {validatedRegister?.registerErrors.email.map((val, ind) => (
+                        <div key={ind}>{val}</div>
+                      ))}
+                    </div>
+                  </div>
 
-            <Label htmlFor="register-password">Senha:</Label>
-            <Input name="password" id="register-password" type="password"></Input>
-            <ErrorMsg>{passwordMsg}</ErrorMsg>
-          </InputContainer>
-          <ButtonContainer>
-            <Button type="submit">Cadastrar-se</Button>
-          </ButtonContainer>
+                  <div className="field-container">
+                    <label htmlFor="register-password">Senha:</label>
+                    <input
+                      className="register-input"
+                      name="password"
+                      id="register-password"
+                      type="password"
+                    ></input>
+                    <div>
+                      {validatedRegister?.registerErrors.password.map((val, ind) => (
+                        <div key={ind}>{val}</div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <button className="button" type="submit">
+                  Cadastrar-se
+                  <img src={userPlugSvg}></img>
+                </button>
+                <div className="login-display show-in-short-screen">
+                  <h3>Já tem uma conta?</h3>
+                  <Link className="button" to="/login">
+                    Entrar
+                    <img src={loginSvg}></img>
+                  </Link>
+                </div>
+              </Form>
+              <div className="register-content">
+                {/* <h2 className="tip">Use seu email institucional</h2> */}
+                <div className="register-mail-content">
+                  <h3>Enviaremos um email de verificação</h3>
+                  <div className="mail-images-container">
+                    <img className="lock-svg" src={lockSvg}></img>
+                    <div>
+                      <img className="envelope-svg" src={envelopeSvg} />
+                    </div>
+                  </div>
+                </div>
+                <div className="login-display">
+                  <h3>Já tem uma conta?</h3>
+                  <Link className="button" to="/login">
+                    Entrar
+                    <img src={loginSvg}></img>
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
         </div>
-      </Form>
-    </SRegister>
+      </SRegister>
+    </>
   );
 };

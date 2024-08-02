@@ -9,7 +9,19 @@ export default defineConfig({
   build: {
     outDir: "./build",
   },
-  base: "/eccommerce-1/",
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:3000/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        cookiePathRewrite: "http://127.0.0.1:5173/api",
+      },
+    },
+    cors: true,
+  },
+
+  base: "/hackateste",
   test: {
     globals: true,
     environment: "jsdom",

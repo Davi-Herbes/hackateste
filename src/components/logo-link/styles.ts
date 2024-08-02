@@ -6,6 +6,7 @@ type TSLogoLink = { theme: ThemeType };
 export const SLogoLink = styled.div<TSLogoLink>`
   ${({ theme }) => css`
     height: 100%;
+    transition: all 300ms;
     > a {
       height: 100%;
       display: block;

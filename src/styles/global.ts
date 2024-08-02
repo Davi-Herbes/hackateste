@@ -32,12 +32,26 @@ button {
 
 h2 {
   font-family: "Open Sans", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h1{
   font-family: "Montserrat", sans-serif;
   font-weight: 900;
 }
+
+  @keyframes fadeInAnimation {
+      from {
+        padding-top: 3vh;
+        opacity: 0.8;
+      }
+      to {
+        padding-top: 0;
+        opacity: 1;
+      }
+    }
+
+
+
 
 `;

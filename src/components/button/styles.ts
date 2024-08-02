@@ -6,7 +6,7 @@ type TSButton = { theme: ThemeType };
 export const SButton = styled.button<TSButton>`
   ${({ theme }) => css`
     width: 100%;
-    height: 6vh;
+    height: 8vh;
     border: none;
     background: #fff;
     box-shadow: 0 1px 5px 1px ${theme.shadow.default};

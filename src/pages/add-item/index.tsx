@@ -2,7 +2,7 @@ import { useUserStore } from "../../store/user-store/state";
 import { useRef, FormEvent, useState } from "react";
 import { SAddItem } from "./styles";
 import { useNavigate } from "react-router-dom";
-import logo from "/public/images/default_image_upload.png";
+import logo from "/images/default_image_upload.png";
 
 export const AddItem = () => {
   const [img, setImg] = useState<string>("");

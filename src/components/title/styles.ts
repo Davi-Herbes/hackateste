@@ -30,7 +30,7 @@ const mediaFont = (theme: ThemeType) => css`
 export const STitle = styled.h1<TSTitle>`
   ${({ theme, size }) => css`
     z-index: 5;
-    /* background: ${theme.colors.bgDark}; */
+    /* background: ${theme.colors.background.dark}; */
     color: ${theme.colors.secondaryColor};
     ${titleSize[size](theme)};
   `}

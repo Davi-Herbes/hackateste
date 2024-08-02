@@ -4,30 +4,27 @@ import { ThemeType } from "../../styles/types/theme-type";
 type TSMenu = { theme: ThemeType; visible?: boolean };
 type TSButton = { theme: ThemeType };
 
-const menuVisible = () => css`
-  visibility: visible;
-  opacity: 1;
-`;
+// const menuVisible = () => css`
+//   visibility: visible;
+//   opacity: 1;
+// `;
 
 export const SMenu = styled.header<TSMenu>`
-  ${({ theme, visible }) => css`
+  ${({ theme }) => css`
     z-index: 5;
     position: fixed;
-    height: 10vh;
-    width: 100vw;
-    background: ${theme.colors.primaryColor};
+    height: 11vh;
+    width: 100%;
+    background: ${theme.colors.background.dark};
     padding: 0 ${theme.spacings.xhuge};
     display: flex;
     justify-content: space-between;
     align-items: center;
-    top: 0;
+    border-bottom: #111 1px solid;
 
     @media ${theme.media.lteMedium} {
-      transition: all ease-in-out 300ms;
       visibility: hidden;
       opacity: 0;
-
-      ${visible && menuVisible()}
 
       position: fixed;
       height: 100vh;
@@ -44,7 +41,7 @@ export const SButton = styled.button<TSButton>`
   ${({ theme }) => css`
     display: none;
     @media (${theme.media.lteMedium}) {
-      display: block;
+      display: none;
       z-index: 6;
       position: fixed;
 
@@ -53,7 +50,7 @@ export const SButton = styled.button<TSButton>`
       width: 4rem;
       height: 4rem;
 
-      background: ${theme.colors.bgWhite};
+      background: ${theme.colors.background.white};
       color: ${theme.colors.primaryColor};
 
       border: none;
