@@ -6,4 +6,4 @@ O projeto nã foi concluído por ser apenas um teste.<br>
 
 ---
 
-Acessar backend: https://github.com/Davi-Herbes/back-hackateste
+Acessar backend: https://github.com/Davi-Herbes/back-hackatest
