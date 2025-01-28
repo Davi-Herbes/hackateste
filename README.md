@@ -1,9 +1,9 @@
-# Como instalar eslint prettier e tudo mais
+# HACKATESTE
 
-https://dev.to/quizzes4u/how-to-set-up-eslint-and-prettier-in-react-typescript-5-project-2023-hd6
+Esse é o repositório de um teste preparatório de uma hackathon que ocorreu no IFRS Campus Feliz. <br>
+O sistema trata-se de um serviço de monitoramento de estoque dos materiais esportivos do nosso campus, onde os usuários poderiam solicitar acesso aos recursos.<br>
+O projeto nã foi concluído por ser apenas um teste.<br>
 
-segue esse link a risca e o mlk esqueceu de colocar o "plugin:prettier/recommended" no "extends" do eslintrc, então coloca
+---
 
-# Como configurar o jest
-
-https://dev.to/hannahadora/jest-testing-with-vite-and-react-typescript-4bap
+Acessar backend: https://github.com/Davi-Herbes/back-hackateste
