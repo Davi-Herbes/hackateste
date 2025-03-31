@@ -1,18 +1,21 @@
-import { Form, Link, useActionData } from "react-router-dom";
-import { useEffect, useState } from "react";
-
-import userPlugSvg from "/images/user-plus.svg";
-import envelopeSvg from "/images/email-envelope.svg";
-import loginSvg from "/images/login.svg";
-import lockSvg from "/images/lock.svg";
+import { Form, useActionData, useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
 
 import { SRegister } from "./styles";
 import { FullLoading } from "../../components/full-loading";
 import { ValidatedRegister } from "./action/validated_register";
+import { confirmUser } from "../../api/auth/confirm";
 
 export const Register = () => {
-  const [validatedRegister, setValidatedRegister] = useState<ValidatedRegister>();
+  const navigate = useNavigate();
 
+  const [validatedRegister, setValidatedRegister] = useState<ValidatedRegister>();
+  const sendMailButtonRef = useRef<HTMLButtonElement>(null);
+  const confirmationButtonRef = useRef<HTMLButtonElement>(null);
+  const confirmationContainerRef = useRef<HTMLDivElement>(null);
+
+  const [canSubmitMail, setCanSubmitMail] = useState(true);
+  const [confirmationCodeValue, setConfirmationCodeValue] = useState<number>();
   const [isLoading, setIsLoading] = useState(true);
   // const [isVisiblePassword, setIsVisiblePassword] = useState(false);
 
@@ -20,26 +23,84 @@ export const Register = () => {
   useEffect(() => {
     if (data instanceof ValidatedRegister) {
       setValidatedRegister(data);
+      validatedForm(data);
     }
     setIsLoading(false);
   }, [data]);
+
+  async function handleConfirmationAttempt(e: React.FormEvent) {
+    e.preventDefault();
+    if (!confirmationCodeValue) return;
+    const response = await confirmUser(confirmationCodeValue);
+
+    if (response) {
+      navigate("/");
+    }
+  }
+
+  function handleConfirmationInputUpdate(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!confirmationButtonRef.current) return;
+
+    const value = e.target.value;
+
+    const numericValue = value.replace(/\D/g, "");
+    e.target.value = numericValue;
+
+    if (numericValue.length !== 6) {
+      confirmationButtonRef.current.disabled = true;
+    } else {
+      confirmationButtonRef.current.disabled = false;
+      setConfirmationCodeValue(Number(numericValue));
+    }
+  }
+
+  async function validatedForm(data: ValidatedRegister) {
+    if (!canSubmitMail) return;
+    setCanSubmitMail(false);
+
+    if (!(data && data.isValid)) return;
+
+    if (!confirmationContainerRef.current) return;
+    if (!sendMailButtonRef.current) return;
+
+    confirmationContainerRef.current.classList.remove("disabled");
+    sendMailButtonRef.current.disabled = true;
+
+    let segundos = 30;
+    sendMailButtonRef.current.innerHTML = `Enviado ${segundos}s`;
+    segundos -= 1;
+    const interval = await new Promise<NodeJS.Timeout>((res) => {
+      const intervalId = setInterval(() => {
+        if (!sendMailButtonRef.current) return;
+        sendMailButtonRef.current.innerHTML = `Enviado ${segundos}s`;
+        segundos -= 1;
+
+        if (segundos === 0) {
+          res(intervalId);
+        }
+      }, 1000);
+    });
+
+    clearInterval(interval);
+    setCanSubmitMail(true);
+    sendMailButtonRef.current.innerHTML = `Enviar`;
+
+    sendMailButtonRef.current.disabled = false;
+  }
 
   return (
     <>
       {isLoading && <FullLoading />}
       <SRegister>
         <div className="form-container">
-          {validatedRegister?.isValid ? (
-            <div className="email-request">
-              <h3>Enviamos um email de verificação para: </h3>
-              <div className="para">{validatedRegister.registerFormData.email}</div>
-              <img src={envelopeSvg}></img>
-              <div>Verifique na sua caixa de entrada ou span.</div>
+          <>
+            <div className="form-image">
+              <h1>Criar Conta</h1>
+              <img src="/hackateste/images/register-icon.svg" alt="" />
             </div>
-          ) : (
-            <>
-              <Form method="POST" onSubmit={() => setIsLoading(true)}>
-                <h1>Criar Conta</h1>
+
+            <div className="form-fields-container">
+              <Form onSubmit={() => setIsLoading(true)} className="fields-form" method="POST">
                 <div className="fields-container">
                   <div className="field-container">
                     <label htmlFor="register-username">Nome Completo:</label>
@@ -48,7 +109,7 @@ export const Register = () => {
                       className="register-input"
                       id="register-username"
                     ></input>
-                    <div>
+                    <div className="error-message">
                       {validatedRegister?.registerErrors.username.map((val, ind) => (
                         <div key={ind}>{val}</div>
                       ))}
@@ -58,7 +119,7 @@ export const Register = () => {
                   <div className="field-container">
                     <label htmlFor="register-email">Email:</label>
                     <input name="email" className="register-input" id="register-email"></input>
-                    <div>
+                    <div className="error-message">
                       {validatedRegister?.registerErrors.email.map((val, ind) => (
                         <div key={ind}>{val}</div>
                       ))}
@@ -73,46 +134,42 @@ export const Register = () => {
                       id="register-password"
                       type="password"
                     ></input>
-                    <div>
+                    <div className="error-message">
                       {validatedRegister?.registerErrors.password.map((val, ind) => (
                         <div key={ind}>{val}</div>
                       ))}
                     </div>
                   </div>
                 </div>
-                <button className="button" type="submit">
-                  Cadastrar-se
-                  <img src={userPlugSvg}></img>
-                </button>
-                <div className="login-display show-in-short-screen">
-                  <h3>Já tem uma conta?</h3>
-                  <Link className="button" to="/login">
-                    Entrar
-                    <img src={loginSvg}></img>
-                  </Link>
+                <div className="confirmation-send">
+                  <span>Precisamos enviar um email para a verificação</span>
+                  <button ref={sendMailButtonRef} type="submit">
+                    Enviar
+                  </button>
                 </div>
               </Form>
-              <div className="register-content">
-                {/* <h2 className="tip">Use seu email institucional</h2> */}
-                <div className="register-mail-content">
-                  <h3>Enviaremos um email de verificação</h3>
-                  <div className="mail-images-container">
-                    <img className="lock-svg" src={lockSvg}></img>
-                    <div>
-                      <img className="envelope-svg" src={envelopeSvg} />
-                    </div>
-                  </div>
-                </div>
-                <div className="login-display">
-                  <h3>Já tem uma conta?</h3>
-                  <Link className="button" to="/login">
-                    Entrar
-                    <img src={loginSvg}></img>
-                  </Link>
-                </div>
+              <div className="confirmation-container disabled" ref={confirmationContainerRef}>
+                <div className="confirmation-title">Digite o código recebido:</div>
+                <form onSubmit={(e) => handleConfirmationAttempt(e)} className="submit-mail-fields">
+                  <input
+                    onChange={handleConfirmationInputUpdate}
+                    type="text"
+                    maxLength={6}
+                    pattern="\d{6}"
+                    disabled={validatedRegister?.isValid ? false : true}
+                  />
+                  <button
+                    disabled
+                    ref={confirmationButtonRef}
+                    className="confirmation-button"
+                    type="submit"
+                  >
+                    Confirmar
+                  </button>
+                </form>
               </div>
-            </>
-          )}
+            </div>
+          </>
         </div>
       </SRegister>
     </>

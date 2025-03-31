@@ -17,12 +17,17 @@ export const registerAction: ActionFunction = async ({ request }): Promise<Valid
     return validatedRegister;
   }
 
+  validatedRegister.isValid = false;
+
   const response = await requestRegistration(userData);
 
   if (response.status !== 200) {
     validatedRegister.isValid = false;
     validatedRegister.registerErrors[response.data.field ?? "password"].push(response.data.message);
+    return validatedRegister;
   }
+
+  validatedRegister.isValid = true;
 
   return validatedRegister;
 };

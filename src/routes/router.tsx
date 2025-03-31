@@ -3,7 +3,6 @@ import { App } from "../app";
 
 import { Home } from "../pages/home";
 import { Register } from "../pages/register";
-import { Confirm } from "../pages/register/children/confirm";
 
 import { registerAction } from "../pages/register/action/register_action";
 import { NotFoundPage } from "../pages/not-found";
@@ -35,11 +34,6 @@ export const router = createBrowserRouter(
               path: "login",
               element: <Login />,
               action: loginAction,
-            },
-
-            {
-              path: "register/confirm/:token",
-              element: <Confirm />,
             },
           ],
         },

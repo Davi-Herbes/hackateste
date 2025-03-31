@@ -7,7 +7,7 @@ export const requestRegistration = async (
   userData: RegisterFormData,
 ): Promise<RegisterResponse> => {
   try {
-    const response = await axios.post("/users", userData);
+    const response = await axios.post("/users", userData, { withCredentials: true });
 
     return { status: response.status, data: { message: response.data.message } };
   } catch (e) {

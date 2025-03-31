@@ -10,6 +10,6 @@ export class LoginError {
 export class LoginSuccess {
   constructor(
     public status: number,
-    public data: { userData: User; message: string },
+    public data: User,
   ) {}
 }

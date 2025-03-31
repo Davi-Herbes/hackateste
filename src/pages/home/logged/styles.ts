@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const SLoggedHome = styled.div`
-  h1,
-  h2 {
-    font-size: 5vh;
-    margin-left: 10vw;
+  .page-layout {
+    height: 89vh;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
   }
 `;

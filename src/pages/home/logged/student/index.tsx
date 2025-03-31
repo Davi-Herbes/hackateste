@@ -4,10 +4,11 @@ import { useUserStore } from "../../../../store/user-store/state";
 
 export const StudentPage = () => {
   const userStore = useStore(useUserStore);
+  console.log(userStore);
 
   return (
     <SStudent>
-      <h1>Bem vindo(a), {userStore.user?.username}</h1>
+      <h1>asdf</h1>
     </SStudent>
   );
 };

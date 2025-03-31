@@ -1,9 +1,9 @@
-import { useStore } from "zustand";
-import { useUserStore } from "../../store/user-store/state";
 import { DefaultHome } from "./default";
 import { LoggedHome } from "./logged";
+import { useGlobalStore } from "../../store/page-store/state";
 
 export const Home = () => {
-  const userStore = useStore(useUserStore);
-  return <>{userStore.isLoggedIn ? <LoggedHome /> : <DefaultHome />}</>;
+  const { isLoggedIn } = useGlobalStore();
+
+  return <>{isLoggedIn ? <LoggedHome /> : <DefaultHome />}</>;
 };

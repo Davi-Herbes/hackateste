@@ -1,8 +1,6 @@
 import { User } from "./user";
 
-export type StateType = {
-  isLoggedIn: boolean;
-  toggleIsLoggedIn: (value: boolean) => void;
+export type UserStateType = {
   user: User | null;
   setUser: (user: User | null) => void;
 };

@@ -17,10 +17,13 @@ export class ValidatedRegister {
     if (!isEmail(email)) {
       this.registerErrors.email.push("Email inválido");
       this.isValid = false;
-    } else if (!email.match(/@*feliz.ifrs.edu.br/)) {
-      this.registerErrors.email.push("Necessário email institucional");
-      this.isValid = false;
     }
+
+    //
+    // else if (!email.match(/@*feliz.ifrs.edu.br/)) {
+    //   this.registerErrors.email.push("Necessário email institucional");
+    //   this.isValid = false;
+    // }
 
     if (password.length < 3 || password.length > 255) {
       this.registerErrors.password.push("A senha deve ter entre 3 e 255 caracteres.");
