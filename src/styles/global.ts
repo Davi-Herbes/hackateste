@@ -40,6 +40,10 @@ h1{
   font-weight: 900;
 }
 
+img {
+  height: 150px;
+}
+
   @keyframes fadeInAnimation {
       from {
         padding-top: 3vh;
