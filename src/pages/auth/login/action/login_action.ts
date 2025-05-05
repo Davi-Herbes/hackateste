@@ -4,6 +4,7 @@ import { logUser } from "../../../../api/auth/login/login";
 import { useUserStore } from "../../../../store/user-store/state";
 import { useGlobalStore } from "../../../../store/page-store/state";
 import { LoginError } from "../../../../api/auth/login/types/login_response";
+import { log } from "../../../../development/log";
 
 export const loginAction: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
@@ -20,7 +21,7 @@ export const loginAction: ActionFunction = async ({ request }) => {
   }
 
   const response = await logUser(userData);
-  console.log(response);
+  log(response);
 
   if (response instanceof LoginError) {
     validatedLogin.isValid = false;

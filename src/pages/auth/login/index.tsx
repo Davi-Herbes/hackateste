@@ -3,6 +3,8 @@ import { SLogin } from "./styles";
 import { useEffect, useState } from "react";
 import { ValidatedLogin } from "./action/validated_login";
 import userSvg from "/images/user.svg";
+import padLockSvg from "/images/lock (1).svg";
+import keySvg from "/images/key.svg";
 import { FullLoading } from "../../../components/full-loading";
 
 export const Login = () => {
@@ -28,15 +30,13 @@ export const Login = () => {
       {isLoading ? <FullLoading /> : ""}
       <SLogin>
         <div className="form-container">
+          <h1>Entrar</h1>
           <Form method="POST" onSubmit={() => setIsLoading(true)}>
-            <h1>Entrar</h1>
             <div className="fields-container">
               <div className="field-container">
                 <label htmlFor="register-email">Email:</label>
                 <input name="email" className="register-input" id="register-email"></input>
-                <div>
-                  {validatedLogin?.loginErrors.email.map((val, ind) => <div key={ind}>{val}</div>)}
-                </div>
+                <div className="error">{validatedLogin?.loginErrors.email[0] || ""}</div>
               </div>
 
               <div className="field-container">
@@ -47,15 +47,11 @@ export const Login = () => {
                   id="register-password"
                   type="password"
                 ></input>
-                <div>
-                  {validatedLogin?.loginErrors.password.map((val, ind) => (
-                    <div key={ind}>{val}</div>
-                  ))}
-                </div>
+                <div className="error">{validatedLogin?.loginErrors.password[0] || ""}</div>
               </div>
             </div>
             <button className="button" type="submit">
-              Cadastrar-se
+              Entrar
               <img src={userSvg}></img>
             </button>
           </Form>

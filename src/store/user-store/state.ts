@@ -7,7 +7,7 @@ export const useUserStore = create<UserStateType>()(
   persist(
     (set) => ({
       user: null,
-      setUser: (user: User | null) => set(() => ({ user })),
+      setUser: (user: User) => set(() => ({ user })),
     }),
     { name: "user-storage", storage: createJSONStorage(() => sessionStorage) },
   ),

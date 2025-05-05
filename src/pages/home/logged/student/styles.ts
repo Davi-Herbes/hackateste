@@ -1,5 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { ThemeType } from "../../../../styles/types/theme-type";
 
-export const SStudent = styled.div`
-  padding-top: 11vh;
+export const SStudent = styled.div<{ theme: ThemeType }>`
+  ${({ theme }) => css`
+    .home-page {
+      .home-header {
+      }
+
+      .home-aside {
+      }
+    }
+  `}
 `;

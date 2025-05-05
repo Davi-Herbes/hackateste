@@ -13,5 +13,5 @@ export const LoggedHome = () => {
     default: "",
   };
 
-  return <SLoggedHome>{homeByRole[userStore.user?.role ?? "default"]}ASDF</SLoggedHome>;
+  return <SLoggedHome>{homeByRole[userStore.user?.role ?? "default"]}</SLoggedHome>;
 };

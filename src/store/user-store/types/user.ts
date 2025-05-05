@@ -1,7 +1,4 @@
-export interface User {
-  email: string;
-  username: string;
-  role: "student" | "supervisor" | "monitor";
-  exp?: number;
-  iat?: number;
-}
+import { z } from "zod";
+import { UserDataSchema } from "./user_data.schema";
+
+export type User = z.infer<typeof UserDataSchema>;
